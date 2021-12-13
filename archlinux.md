@@ -100,7 +100,7 @@ Exec=/usr/bin/mkinitcpio -P
 `sudo pacman -S mesa xorg-server xorg-apps xorg-xinit xorg-twm xorg-xclock xterm`  
 `sudo pacman -S plasma sddm`  
 `sudo systemctl enable sddm.service`  
-`sudo pacman -S  konsole chromium keepassxc discord steam dolphin yakuake ark transmission-qt neofetch bashtop gimp cmatrix libreoffice-still kate gwenview mpv wine winetricks kcalc spectacle p7zip adobe-source-han-sans-jp-fonts adobe-source-han-serif-jp-fonts jre-openjdk nano-syntax-highlighting noto-fonts-emoji pcsx2`  
+`sudo pacman -S  konsole chromium keepassxc discord steam dolphin yakuake ark transmission-qt neofetch bashtop gimp cmatrix libreoffice-still kate gwenview mpv xdg-user-dirs wine winetricks kcalc spectacle p7zip adobe-source-han-sans-jp-fonts adobe-source-han-serif-jp-fonts jre-openjdk nano-syntax-highlighting noto-fonts-emoji pcsx2`  
 `reboot`
 
 # 10. post setup
