@@ -2,8 +2,10 @@
 # 1. EFI, Network, Timezone
 
 ## 1) Verify that you're in EFI
-`efivar -l`  
-if a bunch of files appear, you're booted into **UEFI**. If no files show, you're booted into **BIOS**.
+`cat /sys/firmware/efi/fw_platform_size`  
+- 64 = UEFI64 (GOOD)
+- 32 = UEFI32 (GRUB ONLY)
+- NO = BIOS/CSM
 
 ## 2) Connect to the internet in live installation
 use `iwctl` ([more info](https://wiki.archlinux.org/title/Iwd#iwctl))  
@@ -79,10 +81,15 @@ Yes
 `mount /dev/sda4 /mnt/home`  
 
 # 3. Install Linux
-`cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup`  [backup Mirrorlist]  
-`reflector --country {COUNTRY} --protocol https --latest 5 --sort rate --save /etc/pacman.d/mirrorlist`  
+Backup the current mirrorlist with this command:  
+`cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup`  
 
-`pacstrap -K /mnt base base-devel linux-headers linux linux-firmware networkmanager bash-completion nano linux-lts linux-lts-headers` [Install base linux kernel + LTS in addition + other needed packages]
+`reflector --country COUNTRY,COUNTRY --protocol https --sort rate --save /etc/pacman.d/mirrorlist`  
+
+Install linux:  
+`pacstrap -K /mnt base linux-headers linux linux-firmware networkmanager linux-lts linux-lts-headers` 
+Add packages if you need so:  
+`bash-completion nano`
 
 # 4. Configure Linux & chroot
 `genfstab -U /mnt >> /mnt/etc/fstab`  
